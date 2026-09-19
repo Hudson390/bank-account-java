@@ -1,8 +1,4 @@
-package com.br.studyingclass.studyingrecord.bankaccount;
-
 import java.util.Scanner;
-
-import static com.br.studyingclass.studyingrecord.bankaccount.LimparTela.limparTela;
 
 
 public class MenuBank {
@@ -20,14 +16,18 @@ public class MenuBank {
 
     public void lerOpcao(int option, Account account){
         var scanner = new Scanner(System.in);
+        LimparTela.limparConsole(10);
 
         switch (option){
             case 1:
-                limparTela();
                 lerSaldo(account.getSaldo());
                 break;
             case 2:
                 System.out.println("Cheque Especial: ");
+
+                double valorChequeEspecial = account.chequeValor(account.getSaldoInicial());
+
+                System.out.println("Saldo: " + valorChequeEspecial);
                 break;
             case 3:
                 System.out.print("Informe o valor para depósito: ");

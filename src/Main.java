@@ -1,5 +1,3 @@
-package com.br.studyingclass.studyingrecord.bankaccount;
-
 /*
 Escreva um código onde temos uma conta bancaria que possa realizar as seguintes operações:
  - Consultar saldo
@@ -37,6 +35,14 @@ public class Main {
             option = scanner.nextInt();
 
             menu.lerOpcao(option, account);
+
+             if(option != 7){
+                 System.out.print("Pressione Enter... ");
+                 scanner.nextLine();
+                 scanner.nextLine();
+             }
+             LimparTela.limparConsole(40);
+
         } while (option != 7);
 
         scanner.close();
