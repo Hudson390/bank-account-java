@@ -29,8 +29,8 @@ public class Main {
         var scanner = new Scanner(System.in);
 
         int option;
+        MenuBank menu = new MenuBank();
         do{
-            MenuBank menu = new MenuBank();
             menu.iniciar();
             option = scanner.nextInt();
 

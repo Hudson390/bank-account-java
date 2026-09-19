@@ -1,7 +1,7 @@
 
 public class Account {
     private double saldo;
-    private double saldoInicial;
+    public double saldoInicial;
 
     public double getSaldo() {
         return saldo;
@@ -9,7 +9,7 @@ public class Account {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
-        saldoInicial = saldo;
+        saldoInicial = chequeValor(saldo);
     }
 
     public void depositarValor(double valor){
@@ -25,13 +25,17 @@ public class Account {
     }
 
     public double chequeValor(double valor){
-        if (saldoInicial <= 500){
+        if (saldo <= 500){
             valor = 50;
         } else {
-            valor = saldoInicial * 0.5;
+            valor = saldo * 0.5;
         }
 
         return valor;
+    }
+
+    public void sacarValorCheque(double valor){
+        this.saldoInicial -= valor;
     }
 
     public double getSaldoInicial() {

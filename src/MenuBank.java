@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class MenuBank {
 
+    private boolean VerifyCheck = true;
+
     public void iniciar(){
         System.out.println("1. Consultar Saldo");
         System.out.println("2. Consultar Cheque Especial");
@@ -19,17 +21,17 @@ public class MenuBank {
         LimparTela.limparConsole(10);
 
         switch (option){
-            case 1:
+            case 1: // SALDO NA CONTA
                 lerSaldo(account.getSaldo());
                 break;
-            case 2:
+            case 2: // CHEQUE ESPECIAL
                 System.out.println("Cheque Especial: ");
 
-                double valorChequeEspecial = account.chequeValor(account.getSaldoInicial());
+                double valorChequeEspecial = account.saldoInicial;
 
                 System.out.println("Saldo: " + valorChequeEspecial);
                 break;
-            case 3:
+            case 3: // DEPOSITO
                 System.out.print("Informe o valor para depósito: ");
 
                 double valor = scanner.nextDouble();
@@ -43,21 +45,25 @@ public class MenuBank {
                     System.out.println("Valor Inválido!!!");
                 }
                 break;
-            case 4:
+            case 4: // SAQUE
                 System.out.print("Informe o valor para saque: ");
                 double valor1 = scanner.nextDouble();
 
-                if (valor1 <= account.getSaldo()){
+                if (valor1 <= account.getSaldo() && valor1 > 0){
                     account.sacarValor(valor1);
                     System.out.println("Saque realizado com sucesso!");
                     System.out.println("Novo saldo: " + account.getSaldo());
+                } else if (valor1 >= account.getSaldo() && account.getSaldoInicial() > 0 && valor1 <= account.getSaldoInicial()) {
+                    VerifyCheck = false;
+                    account.sacarValorCheque(valor1);
+
+                } else if (valor1 < 0) {
+                    System.out.println("Valor Inválido!!!");
                 } else {
                     System.out.println("Saldo insuficiente!!!");
                 }
-
-
                 break;
-            case 5:
+            case 5: // PAGAMENTO DE BOLETO
                 System.out.print("Informe o valor do boleto: ");
                 double valor2 = scanner.nextDouble();
 
@@ -65,6 +71,13 @@ public class MenuBank {
                 System.out.println("Boleto pago com sucesso!");
                 System.out.println("Novo saldo: " + account.getSaldo());
                 break;
+            case 6:
+                if (!VerifyCheck){
+                    System.out.print("A conta esta utilizando o cheque especial. ");
+                }else {
+                    System.out.print("A conta não esta utilizando o cheque especial. ");
+                }
+
         }
     }
 
