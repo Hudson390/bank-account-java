@@ -34,18 +34,28 @@ public class MenuBank {
 
                 double valor = scanner.nextDouble();
 
-                account.depositarValor(valor);
+                if (valor >= 0 ){
+                    account.depositarValor(valor);
 
-                System.out.println("Depósito realizado com sucesso!");
-                System.out.println("Novo saldo: " + account.getSaldo());
+                    System.out.println("Depósito realizado com sucesso!");
+                    System.out.println("Novo saldo: " + account.getSaldo());
+                } else {
+                    System.out.println("Valor Inválido!!!");
+                }
                 break;
             case 4:
                 System.out.print("Informe o valor para saque: ");
                 double valor1 = scanner.nextDouble();
 
-                account.sacarValor(valor1);
-                System.out.println("Saque realizado com sucesso!");
-                System.out.println("Novo saldo: " + account.getSaldo());
+                if (valor1 <= account.getSaldo()){
+                    account.sacarValor(valor1);
+                    System.out.println("Saque realizado com sucesso!");
+                    System.out.println("Novo saldo: " + account.getSaldo());
+                } else {
+                    System.out.println("Saldo insuficiente!!!");
+                }
+
+
                 break;
             case 5:
                 System.out.print("Informe o valor do boleto: ");
