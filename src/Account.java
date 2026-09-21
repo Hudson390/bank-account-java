@@ -10,6 +10,7 @@ public class Account {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
         saldoInicial = chequeValor(saldo);
+        this.saldo = saldo + saldoInicial;
     }
 
     public void depositarValor(double valor){
@@ -41,5 +42,15 @@ public class Account {
     public double getSaldoInicial() {
         return saldoInicial;
     }
+
+    public void lerSaldo(double saldo){
+        System.out.println("Saldo: " + saldo);
+    }
+
+    public void setSaldoInicial(double saldoInicial) {
+        this.saldoInicial = saldoInicial;
+        
+    }
+
 
 }

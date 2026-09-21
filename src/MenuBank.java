@@ -22,7 +22,7 @@ public class MenuBank {
 
         switch (option){
             case 1: // SALDO NA CONTA
-                lerSaldo(account.getSaldo());
+                account.lerSaldo(account.getSaldo());
                 break;
             case 2: // CHEQUE ESPECIAL
                 System.out.println("Cheque Especial: ");
@@ -49,19 +49,51 @@ public class MenuBank {
                 System.out.print("Informe o valor para saque: ");
                 double valor1 = scanner.nextDouble();
 
-                if (valor1 <= account.getSaldo() && valor1 > 0){
+                var saldoPrimario = account.getSaldo() - account.saldoInicial;
+
+                if (valor1 > saldoPrimario && valor1 > 0 && valor1 < account.getSaldo()) {
                     account.sacarValor(valor1);
-                    System.out.println("Saque realizado com sucesso!");
-                    System.out.println("Novo saldo: " + account.getSaldo());
-                } else if (valor1 >= account.getSaldo() && account.getSaldoInicial() > 0 && valor1 <= account.getSaldoInicial()) {
+                    var valorSaldo = Math.abs(saldoPrimario - valor1);
+                    var cheque = account.saldoInicial;
+                    var valorFinal = Math.abs(cheque - valorSaldo);
+                    account.setSaldoInicial(valorFinal);
                     VerifyCheck = false;
-                    account.sacarValorCheque(valor1);
+            
+                
+
+                } else if (valor1 > 0 && valor1 < account.getSaldo()) {
+                    if (account.getSaldo() > account.saldoInicial) {
+                        account.sacarValor(valor1);
+                        System.out.println("Saque realizado com sucesso!");
+                        System.out.println("Novo saldo: " + account.getSaldo());
+                    } else if (account.getSaldo() <= account.saldoInicial) {
+                        VerifyCheck = false;
+                        account.sacarValorCheque(valor1);
+                        account.sacarValor(valor1);
+                        System.out.println("Saque realizado com sucesso!");
+                    } 
 
                 } else if (valor1 < 0) {
-                    System.out.println("Valor Inválido!!!");
+                        System.out.println("Valor Inválido!!!");
                 } else {
-                    System.out.println("Saldo insuficiente!!!");
+                        System.out.println("Saldo insuficiente!!!");
                 }
+
+                
+
+                // if (valor1 <= account.getSaldo() && valor1 > 0){
+                //     account.sacarValor(valor1);
+                //     System.out.println("Saque realizado com sucesso!");
+                //     System.out.println("Novo saldo: " + account.getSaldo());
+                // } else if (valor1 >= account.getSaldo() && account.getSaldoInicial() > 0 && valor1 <= account.getSaldoInicial()) {
+                //     VerifyCheck = false;
+                //     account.sacarValorCheque(valor1);
+
+                // } else if (valor1 < 0) {
+                //     System.out.println("Valor Inválido!!!");
+                // } else {
+                //     System.out.println("Saldo insuficiente!!!");
+                // }
                 break;
             case 5: // PAGAMENTO DE BOLETO
                 System.out.print("Informe o valor do boleto: ");
@@ -79,11 +111,7 @@ public class MenuBank {
                 }
 
         }
-    }
 
-
-    public void lerSaldo(double saldo){
-        System.out.println("Saldo: " + saldo);
     }
 
 }

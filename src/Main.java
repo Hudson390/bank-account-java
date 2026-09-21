@@ -16,9 +16,6 @@ Siga as seguintes regras para implementar
  - Caso o limite de cheque especial seja usado, assim que possível a conta deve cobrar uma taxa de 20% do valor usado do cheque especial.
 
 */
-
-
-import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
