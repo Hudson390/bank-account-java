@@ -2,6 +2,7 @@
 public class Account {
     private double saldo;
     public double saldoInicial;
+    private double valorDebitos;
 
     public double getSaldo() {
         return saldo;
@@ -50,6 +51,11 @@ public class Account {
     public void setSaldoInicial(double saldoInicial) {
         this.saldoInicial = saldoInicial;
         
+    }
+
+    public double calcValorTaxa(double valor){
+        valorDebitos = valorDebitos + (valor * 0.2);
+        return valorDebitos;
     }
 
 

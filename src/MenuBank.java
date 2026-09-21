@@ -58,8 +58,12 @@ public class MenuBank {
                     var valorFinal = Math.abs(cheque - valorSaldo);
                     account.setSaldoInicial(valorFinal);
                     VerifyCheck = false;
-            
-                
+
+                    account.calcValorTaxa(valorSaldo);
+
+                    System.out.println("Saque realizado com sucesso!");
+                    System.out.println("Novo saldo: " + account.getSaldo());
+
 
                 } else if (valor1 > 0 && valor1 < account.getSaldo()) {
                     if (account.getSaldo() > account.saldoInicial) {
