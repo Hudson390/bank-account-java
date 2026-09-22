@@ -53,9 +53,25 @@ public class Account {
         
     }
 
-    public double calcValorTaxa(double valor){
+    public void calcValorTaxa(double valor){
         valorDebitos = valorDebitos + (valor * 0.2);
-        return valorDebitos;
+    }
+
+    public void cobrarTaxas(){
+        var valorSaldo = (saldo - saldoInicial); // 12000
+        if ( valorSaldo > 0 && valorDebitos < valorSaldo) {
+            saldo = saldo - valorDebitos;
+            System.out.println("Pagamento de debito do cheque especial:");
+            System.out.println("Saldo: " + saldo);
+            LimparTela.limparConsole(40);
+        } else if (valorSaldo < valorDebitos && valorSaldo > 0) {
+            saldo = saldo -  valorSaldo;
+            valorDebitos = valorDebitos - valorSaldo;
+            System.out.println("Pagamento de debito do cheque especial:");
+            System.out.println("Saldo: " + saldo);
+
+        }
+
     }
 
 

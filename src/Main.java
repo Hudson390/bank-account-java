@@ -28,6 +28,7 @@ public class Main {
         int option;
         MenuBank menu = new MenuBank();
         do{
+            account.cobrarTaxas();
             menu.iniciar();
             option = scanner.nextInt();
 
